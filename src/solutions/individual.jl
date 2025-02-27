@@ -50,7 +50,8 @@ mutable struct xFgh_solution{X} <: AbstractMultiObjectiveSolution
     is_feasible::Bool
 end
 
-const xFgh_indiv = xFgh_solution{Vector{Float64}}
+#const xFgh_indiv = xFgh_solution{Vector{Float64}}
+const xFgh_indiv = Union{xFgh_solution{Vector{Float64}}, xFgh_solution{Vector{Int64}}}
 
 function xFgh_indiv(
     x,

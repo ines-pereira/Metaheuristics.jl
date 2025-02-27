@@ -146,7 +146,7 @@ function GA_reproduction(pa::Vector{Int64},
         p_cr = 0.9,
         p_m  = 0.1,
         rng  = default_rng_mh()
-    ) where T <: AbstractFloat
+    )
 
 
     # crossover

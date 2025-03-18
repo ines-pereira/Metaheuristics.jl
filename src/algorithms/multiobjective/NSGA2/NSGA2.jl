@@ -121,7 +121,7 @@ function GA_reproduction(pa::AbstractVector{T},
         p_cr = 0.9,
         p_m  = 0.1,
         rng  = default_rng_mh()
-    ) where T <: AbstractFloat
+    ) where T <: Real
 
 
     # crossover
@@ -137,32 +137,6 @@ function GA_reproduction(pa::AbstractVector{T},
 
     return c1, c2
 end
-
-function GA_reproduction(pa::Vector{Int64},
-        pb::Vector{Int64},
-        bounds::BoxConstrainedSpace;
-        η_cr = 20,
-        η_m  = 15,
-        p_cr = 0.9,
-        p_m  = 0.1,
-        rng  = default_rng_mh()
-    )
-
-
-    # crossover
-    c1, c2 = SBX_crossover(pa, pb, bounds, η_cr, p_cr, rng)
-
-    # mutation
-    polynomial_mutation!(c1, bounds, η_m, p_m, rng)
-    polynomial_mutation!(c2, bounds, η_m, p_m, rng)
-
-    # rapair solutions if necesary
-    reset_to_violated_bounds!(c1, bounds)
-    reset_to_violated_bounds!(c2, bounds)
-
-    return c1, c2
-end
-
 
 """
     GA_reproduction_half(pa::AbstractVector{T},
